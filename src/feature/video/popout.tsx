@@ -1,3 +1,10 @@
+/**
+ * Attempt to create a pop-out window for the video player.
+ *
+ * Zoom guides referenced
+ * https://developers.zoom.us/docs/video-sdk/web/video-picture-in-picture/
+ * https://developers.zoom.us/blog/video-sdk-picture-in-picture/
+ */
 export const handlePopout = () => {
   const popout = window.open('', '', 'width=600,height=400');
 
