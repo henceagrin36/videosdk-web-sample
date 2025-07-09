@@ -32,3 +32,6 @@ dist
 update-version.js
 export.sh
 /export
+
+# added
+package-lock.json

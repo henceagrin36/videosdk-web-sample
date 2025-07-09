@@ -19,12 +19,13 @@ import { useParticipantsChange } from './hooks/useParticipantsChange';
 import type { Participant } from '../../index-types';
 import { usePrevious } from '../../hooks';
 import { useVideoAspect } from './hooks/useVideoAspectRatio';
-import { Radio } from 'antd';
+import { Button, Radio } from 'antd';
 // import Draggable from 'react-draggable';
 import Draggable from './components/draggable';
 import { useSpotlightVideo } from './hooks/useSpotlightVideo';
 import RemoteCameraControlPanel from './components/remote-camera-control';
 import { isAndroidOrIOSBrowser } from '../../utils/platform';
+import { handlePopout } from './popout';
 
 interface ExtendedParticipant extends Participant {
   spotlighted?: boolean;
@@ -151,6 +152,7 @@ const VideoContainer = () => {
     }
     return Math.sqrt(pageSize);
   }, [spotlightUsers, isRecieveSharing, pageSize]);
+
   return (
     <div className="viewport">
       <ShareView ref={shareViewRef} onRecieveSharingChange={setIsRecieveSharing} />
@@ -167,6 +169,9 @@ const VideoContainer = () => {
         }}
       >
         <video-player-container class="unified-self-view-container">
+          <div style={{ position: 'absolute', zIndex: 99 }}>
+            <Button onClick={handlePopout}>Popout</Button>
+          </div>
           <AvatarActionContext.Provider value={avatarActionState}>
             {currentUser?.bVideoOn && (
               <div>
